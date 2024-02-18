@@ -1,0 +1,12 @@
+version: "3"
+services:
+  database:
+    image: "postgres:13-alpine"
+    container_name: todo_database
+    environment:
+      POSTGRES_USER: todo_user
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: todo_db
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "5432:5432"
