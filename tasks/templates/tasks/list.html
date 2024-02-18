@@ -2,20 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Task's list</title>
 </head>
 <body>
     <h1>To do</h1>
     <form method="post" action="/">
         {%  csrf_token  %}
         {{ form.title }}
-        <input type="submit" name="Create task">
+        <input type="submit" name="Create task" value="Create">
     </form>
     {% for task in tasks %}
         <br>
         <div class="">
             <a href="{% url 'update_task' task.id %}">Update</a>
-        <p>{{ task.title }}</p>
+            <a href="{% url 'delete_task' task.id %}">Delete</a>
+            {% if task.complete == True %}
+                <s>{{ task.title }}</s>
+            {% else %}
+                <span>{{ task.title }}</span>
+            {% endif %}
         </div>
     {% endfor %}
 </body>
